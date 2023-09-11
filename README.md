@@ -1,11 +1,11 @@
-# Grupo X
+# Grupo 9
 
-Este es el repositorio del *Grupo X*, cuyos integrantes son:
+Este es el repositorio del *Grupo 9*, cuyos integrantes son:
 
-* Integrante 1 - Rol
-* Integrante 2 - Rol
-* Integrante 3 - Rol
-* **Tutor**: Nombre Tutor
+* Fernando Herrera - 202173559-3
+* Daniel Muñoz - 201956637-7
+* Antonia Zúñiga - 202011553-2
+* **Tutor**: Daniel Parraguez
 
 ## Wiki
 
