@@ -1,11 +1,12 @@
 # Grupo 9
 
-Este es el repositorio del *Grupo 9*, cuyos integrantes son:
+Este es el repositorio del *Grupo 20*, cuyos integrantes son:
 
-* Fernando Herrera - 202173559-3
-* Daniel Muñoz - 201956637-7
+* Catalina Jara Broughton 
+* Jhossep Martinez 
+* Vicente Illanes 
 * Antonia Zúñiga - 202011553-2
-* **Tutor**: Daniel Parraguez
+* **Tutor**: Eduardo Pino
 
 ## Wiki
 
