@@ -10,7 +10,7 @@ Este es el repositorio del *Grupo 6*, cuyos integrantes son:
 
 ## Wiki
 
-Puede acceder a la Wiki mediante el siguiente [enlace](https://gitlab.inf.utfsm.cl/antonia.zuniga/proyecto2024-1/-/wikis/home)
+Puede acceder a la Wiki mediante el siguiente [enlace](https://gitlab.inf.utfsm.cl/antonia.zuniga/proyecto2024-1/-/wikis/PROYECTO)
 
 ## Videos
 
