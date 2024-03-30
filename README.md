@@ -3,7 +3,7 @@
 Este es el repositorio del *Grupo 6*, cuyos integrantes son:
 
 * Catalina Jara Broughton 
-* Jhossep Martinez 
+* Jhossep Martinez - 202173530-5
 * Vicente Illanes 
 * Antonia Zúñiga - 202011553-2
 * **Tutor**: Eduardo Pino
