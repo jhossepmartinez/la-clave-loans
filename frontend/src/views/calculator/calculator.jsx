@@ -4,40 +4,18 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { createSolicitud } from "../../repositories/solicitudes";
+import {
+	fetchUf,
+	fetchEuro,
+	fetchDolar,
+	fetchUTM,
+} from "../../repositories/denominaciones";
 
 export default function calculator() {
-	function fetch_UF() {
-		// Hace un fetch a la API
-		fetch(
-			"https://api.cmfchile.cl/api-sbifv3/recursos_api/uf?apikey=d6de0b53a079216792c02b5ddb80dc55ab2c142b&formato=json"
-		)
-			.then((res) => res.json()) // convierte el resultado a json
-			.then((data) => {
-				// extrae los valores y los almacena en uf_value y uf...stamp
-				set_uf_value(1000 * parseFloat(data.UFs[0].Valor));
-
-				console.log(data.UFs[0].Fecha);
-				const date_object = new Date(data.UFs[0].Fecha);
-				date_object.setDate(
-					date_object.getDate() + 1
-				); /* Pequeno fix, sin hora se setea a un dia anterior asi que es necesario poner +1 dia  */
-				const options = {
-					year: "numeric",
-					month: "long",
-					day: "numeric",
-					timezone: "UTC",
-				};
-				const formatted_date = date_object.toLocaleDateString("es-CL", options);
-				set_uf_time_stamp(formatted_date);
-			});
-	}
-
-	useEffect(() => {
-		fetch_UF();
-	}, []);
-
-	const [uf_value, set_uf_value] = useState([]);
-	const [uf_time_stamp, set_uf_time_stamp] = useState([]);
+	let { ufValue, ufTimeStamp } = fetchUf();
+	let { euroValue, euroTimeStamp } = fetchEuro();
+	let { dolarValue, dolarTimeStamp } = fetchDolar();
+	let { UTMValue, UTMTimeStamp } = fetchUTM();
 
 	const [cant_prestamo, set_cant_prestamo] = useState(0);
 	const [tasa, set_tasa] = useState(0);
@@ -61,13 +39,11 @@ export default function calculator() {
 					((1 - (1 + parsed_tasa / 100) ** -parsed_meses) / (parsed_tasa / 100))
 			);
 			const pago_total = pago_mensual * meses;
-			console.log(pago_mensual, uf_value);
-			set_pago_mensual(parseFloat((pago_mensual / uf_value).toFixed(2)));
-			set_pago_total(
-				parseFloat(((pago_mensual * meses) / uf_value).toFixed(2))
-			);
+			console.log(pago_mensual, ufValue);
+			set_pago_mensual(parseFloat((pago_mensual / ufValue).toFixed(2)));
+			set_pago_total(parseFloat(((pago_mensual * meses) / ufValue).toFixed(2)));
 			set_interest_total(
-				parseFloat(((pago_total - cant_prestamo) / uf_value).toFixed(2))
+				parseFloat(((pago_total - cant_prestamo) / ufValue).toFixed(2))
 			);
 		} else {
 			set_pago_mensual("Invalid Input!");
@@ -113,14 +89,24 @@ export default function calculator() {
 		<div>
 			<div className="container">
 				<div className="row">
-					<div className="col-md-6 mx-auto calculate-form">
+					<div className="col-md-7 mx-auto calculate-form">
 						<div className="card card-body text-center mt-5">
 							<div className="row">
 								<div className="col-md">
 									<div className="span-container">
 										<div className="d-inline">
 											<span className="input-group-text">
-												UF Dia: ${uf_value}
+												UF Dia:{" "}
+												{ufValue ? (
+													ufValue + " CLP"
+												) : (
+													<div
+														class="spinner-border spinner-border-sm"
+														role="status"
+													>
+														<span class="sr-only">Loading...</span>
+													</div>
+												)}
 											</span>
 										</div>
 									</div>
@@ -129,7 +115,138 @@ export default function calculator() {
 									<div className="span-container">
 										<div className="d-inline">
 											<span className="input-group-text">
-												Fecha UF: {uf_time_stamp}
+												Fecha UF:{" "}
+												{ufTimeStamp ? (
+													ufTimeStamp
+												) : (
+													<div
+														class="spinner-border spinner-border-sm"
+														role="status"
+													>
+														<span class="sr-only">Loading...</span>
+													</div>
+												)}
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div className="row">
+								<div className="col-md">
+									<div className="span-container">
+										<div className="d-inline">
+											<span className="input-group-text">
+												Euro Dia:{" "}
+												{euroValue ? (
+													euroValue + " CLP"
+												) : (
+													<div
+														class="spinner-border spinner-border-sm"
+														role="status"
+													>
+														<span class="sr-only">Loading...</span>
+													</div>
+												)}
+											</span>
+										</div>
+									</div>
+								</div>
+								<div className="col-md">
+									<div className="span-container">
+										<div className="d-inline">
+											<span className="input-group-text">
+												Fecha Euro:{" "}
+												{euroTimeStamp ? (
+													euroTimeStamp
+												) : (
+													<div
+														class="spinner-border spinner-border-sm"
+														role="status"
+													>
+														<span class="sr-only">Loading...</span>
+													</div>
+												)}
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="row">
+								<div className="col-md">
+									<div className="span-container">
+										<div className="d-inline">
+											<span className="input-group-text">
+												Dolar Dia:{" "}
+												{dolarValue ? (
+													dolarValue + " CLP"
+												) : (
+													<div
+														class="spinner-border spinner-border-sm"
+														role="status"
+													>
+														<span class="sr-only">Loading...</span>
+													</div>
+												)}
+											</span>
+										</div>
+									</div>
+								</div>
+								<div className="col-md">
+									<div className="span-container">
+										<div className="d-inline">
+											<span className="input-group-text">
+												Fecha Dolar:{" "}
+												{dolarTimeStamp ? (
+													dolarTimeStamp
+												) : (
+													<div
+														class="spinner-border spinner-border-sm"
+														role="status"
+													>
+														<span class="sr-only">Loading...</span>
+													</div>
+												)}
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="row">
+								<div className="col-md">
+									<div className="span-container">
+										<div className="d-inline">
+											<span className="input-group-text">
+												UTM Dia:{" "}
+												{UTMValue ? (
+													UTMValue + " CLP"
+												) : (
+													<div
+														class="spinner-border spinner-border-sm"
+														role="status"
+													>
+														<span class="sr-only">Loading...</span>
+													</div>
+												)}
+											</span>
+										</div>
+									</div>
+								</div>
+								<div className="col-md">
+									<div className="span-container">
+										<div className="d-inline">
+											<span className="input-group-text">
+												Fecha UTM:{" "}
+												{UTMTimeStamp ? (
+													UTMTimeStamp
+												) : (
+													<div
+														class="spinner-border spinner-border-sm"
+														role="status"
+													>
+														<span class="sr-only">Loading...</span>
+													</div>
+												)}
 											</span>
 										</div>
 									</div>
