@@ -1,6 +1,7 @@
 import React from "react";
 
 import axios from 'axios'
+
 import { saveAs } from "file-saver";
 
 import { useEffect, useState } from "react";
@@ -58,6 +59,7 @@ export default function calculator() {
 	const [state, setstate] = useState({});
 
 	const [show_alert, set_show_alert] = useState(false);
+	const [display_download_button, set_download_button] = useState(false);
 
 	const submitForm = async (e) => {
 		e.preventDefault();
@@ -66,6 +68,7 @@ export default function calculator() {
 			const response = await createSolicitud(state);
 			// history.push(`/solicitudes/${response.data.id}`);
 			set_show_alert(true);
+			set_download_button(true);
 			setTimeout(() => {
 				set_show_alert(false);
 			}, 1500);
@@ -86,7 +89,20 @@ export default function calculator() {
 	};
 
 	const download_form = () =>{
-		const blob = new Blob(["hola"], { type: "text/plain;charset=utf-8" });
+		var arr =
+		"Cantidad de prestamo: "+ cant_prestamo+
+		"\nTasa: " +
+		tasa +
+		"\nMeses: " +
+		meses +
+		"\nPago mensual en UF: " +
+		pago_mensual +
+		"\nPago total en UF: " +
+		pago_total+
+		"\nInteres total en UF: "+
+		interes_total;
+		
+		const blob = new Blob([arr], { type: "text/plain;charset=utf-8" });
         saveAs(blob, "informe.txt");
 	};
 
@@ -378,14 +394,17 @@ export default function calculator() {
 										>
 											Enviar Solicitud
 										</button>
-									
-										<button
-											type="submit"
-											className="btn btn-secondary btn-block"
-											onClick={download_form}
-										>
-											Descargar informe
-										</button>
+										{display_download_button == true &&
+																		
+											<button
+												type="submit"
+												className="btn btn-secondary btn-block"
+												onClick={download_form}
+											>
+												Descargar informe
+											</button>
+											
+										}
 									</div>
 								</form>
 								{show_alert && (
