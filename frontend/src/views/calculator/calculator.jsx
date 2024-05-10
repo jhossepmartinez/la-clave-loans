@@ -1,4 +1,9 @@
 import React from "react";
+
+import axios from 'axios'
+
+import { saveAs } from "file-saver";
+
 import { useEffect, useState } from "react";
 
 import { useHistory } from "react-router-dom";
@@ -24,6 +29,12 @@ export default function calculator() {
 	const [pago_total, set_pago_total] = useState(0);
 	const [interes_total, set_interest_total] = useState(0);
 
+	const [pago_mensual_clp, set_pago_mensual_clp] = useState(0);
+	const [pago_total_clp, set_pago_total_clp] = useState(0);
+	const [interes_total_clp, set_interest_total_clp] = useState(0);
+
+	const [cant_prestamo_variable, set_cant_prestamo_variable] = useState(0);
+
 	function updateResult() {
 		const parsed_cant_prestamo = parseFloat(cant_prestamo);
 		const parsed_tasa = parseFloat(tasa);
@@ -40,8 +51,13 @@ export default function calculator() {
 			);
 			const pago_total = pago_mensual * meses;
 			console.log(pago_mensual, ufValue);
+			set_cant_prestamo_variable(parseFloat((cant_prestamo/ufValue).toFixed(2)));
+			set_pago_mensual_clp(parseFloat(pago_mensual));
 			set_pago_mensual(parseFloat((pago_mensual / ufValue).toFixed(2)));
+			set_pago_total_clp(parseFloat(pago_mensual * meses) );
 			set_pago_total(parseFloat(((pago_mensual * meses) / ufValue).toFixed(2)));
+			set_interest_total_clp(parseFloat((pago_total - cant_prestamo).toFixed(2))
+		);
 			set_interest_total(
 				parseFloat(((pago_total - cant_prestamo) / ufValue).toFixed(2))
 			);
@@ -54,6 +70,7 @@ export default function calculator() {
 	const [state, setstate] = useState({});
 
 	const [show_alert, set_show_alert] = useState(false);
+	const [display_download_button, set_download_button] = useState(false);
 
 	const submitForm = async (e) => {
 		e.preventDefault();
@@ -62,6 +79,7 @@ export default function calculator() {
 			const response = await createSolicitud(state);
 			// history.push(`/solicitudes/${response.data.id}`);
 			set_show_alert(true);
+			set_download_button(true);
 			setTimeout(() => {
 				set_show_alert(false);
 			}, 1500);
@@ -79,6 +97,33 @@ export default function calculator() {
 			pago_total: pago_total,
 			interes_total: interes_total,
 		});
+	};
+
+	const download_form = () =>{
+		var arr =
+		"Tasa: " +
+		tasa +
+		"\nMeses: " +
+		meses +
+		"\n\nCantidad de prestamo en CLP: "+ 
+		cant_prestamo+
+		"\nPago mensual en CLP: " +
+		pago_mensual_clp +
+		"\nPago total en CLP: " +
+		pago_total_clp+
+		"\nInteres total en CLP: "+
+		interes_total_clp+
+		"\n\nCantidad de prestamo en UF: "+
+		cant_prestamo_variable +
+		"\nPago mensual en UF: " +
+		pago_mensual +
+		"\nPago total en UF: " +
+		pago_total+
+		"\nInteres total en UF: "+
+		interes_total;
+		
+		const blob = new Blob([arr], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, "informe.txt");
 	};
 
 	// useEffect(() => {
@@ -369,6 +414,17 @@ export default function calculator() {
 										>
 											Enviar Solicitud
 										</button>
+										{display_download_button == true &&
+																		
+											<button
+												type="submit"
+												className="btn btn-secondary btn-block"
+												onClick={download_form}
+											>
+												Descargar informe
+											</button>
+											
+										}
 									</div>
 								</form>
 								{show_alert && (
