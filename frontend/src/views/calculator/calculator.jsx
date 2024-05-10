@@ -29,6 +29,12 @@ export default function calculator() {
 	const [pago_total, set_pago_total] = useState(0);
 	const [interes_total, set_interest_total] = useState(0);
 
+	const [pago_mensual_clp, set_pago_mensual_clp] = useState(0);
+	const [pago_total_clp, set_pago_total_clp] = useState(0);
+	const [interes_total_clp, set_interest_total_clp] = useState(0);
+
+	const [cant_prestamo_variable, set_cant_prestamo_variable] = useState(0);
+
 	function updateResult() {
 		const parsed_cant_prestamo = parseFloat(cant_prestamo);
 		const parsed_tasa = parseFloat(tasa);
@@ -45,8 +51,13 @@ export default function calculator() {
 			);
 			const pago_total = pago_mensual * meses;
 			console.log(pago_mensual, ufValue);
+			set_cant_prestamo_variable(parseFloat((cant_prestamo/ufValue).toFixed(2)));
+			set_pago_mensual_clp(parseFloat(pago_mensual));
 			set_pago_mensual(parseFloat((pago_mensual / ufValue).toFixed(2)));
+			set_pago_total_clp(parseFloat(pago_mensual * meses) );
 			set_pago_total(parseFloat(((pago_mensual * meses) / ufValue).toFixed(2)));
+			set_interest_total_clp(parseFloat((pago_total - cant_prestamo).toFixed(2))
+		);
 			set_interest_total(
 				parseFloat(((pago_total - cant_prestamo) / ufValue).toFixed(2))
 			);
@@ -90,11 +101,20 @@ export default function calculator() {
 
 	const download_form = () =>{
 		var arr =
-		"Cantidad de prestamo: "+ cant_prestamo+
-		"\nTasa: " +
+		"Tasa: " +
 		tasa +
 		"\nMeses: " +
 		meses +
+		"\n\nCantidad de prestamo en CLP: "+ 
+		cant_prestamo+
+		"\nPago mensual en CLP: " +
+		pago_mensual_clp +
+		"\nPago total en CLP: " +
+		pago_total_clp+
+		"\nInteres total en CLP: "+
+		interes_total_clp+
+		"\n\nCantidad de prestamo en UF: "+
+		cant_prestamo_variable +
 		"\nPago mensual en UF: " +
 		pago_mensual +
 		"\nPago total en UF: " +
