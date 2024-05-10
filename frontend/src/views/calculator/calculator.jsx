@@ -1,6 +1,6 @@
 import React from "react";
 
-import axios from 'axios'
+import axios from "axios";
 
 import { saveAs } from "file-saver";
 
@@ -51,13 +51,16 @@ export default function calculator() {
 			);
 			const pago_total = pago_mensual * meses;
 			console.log(pago_mensual, ufValue);
-			set_cant_prestamo_variable(parseFloat((cant_prestamo/ufValue).toFixed(2)));
+			set_cant_prestamo_variable(
+				parseFloat((cant_prestamo / ufValue).toFixed(2))
+			);
 			set_pago_mensual_clp(parseFloat(pago_mensual));
 			set_pago_mensual(parseFloat((pago_mensual / ufValue).toFixed(2)));
-			set_pago_total_clp(parseFloat(pago_mensual * meses) );
+			set_pago_total_clp(parseFloat(pago_mensual * meses));
 			set_pago_total(parseFloat(((pago_mensual * meses) / ufValue).toFixed(2)));
-			set_interest_total_clp(parseFloat((pago_total - cant_prestamo).toFixed(2))
-		);
+			set_interest_total_clp(
+				parseFloat((pago_total - cant_prestamo).toFixed(2))
+			);
 			set_interest_total(
 				parseFloat(((pago_total - cant_prestamo) / ufValue).toFixed(2))
 			);
@@ -99,31 +102,31 @@ export default function calculator() {
 		});
 	};
 
-	const download_form = () =>{
+	const download_form = () => {
 		var arr =
-		"Tasa: " +
-		tasa +
-		"\nMeses: " +
-		meses +
-		"\n\nCantidad de prestamo en CLP: "+ 
-		cant_prestamo+
-		"\nPago mensual en CLP: " +
-		pago_mensual_clp +
-		"\nPago total en CLP: " +
-		pago_total_clp+
-		"\nInteres total en CLP: "+
-		interes_total_clp+
-		"\n\nCantidad de prestamo en UF: "+
-		cant_prestamo_variable +
-		"\nPago mensual en UF: " +
-		pago_mensual +
-		"\nPago total en UF: " +
-		pago_total+
-		"\nInteres total en UF: "+
-		interes_total;
-		
+			"Tasa: " +
+			tasa +
+			"\nMeses: " +
+			meses +
+			"\n\nCantidad de prestamo en CLP: " +
+			cant_prestamo +
+			"\nPago mensual en CLP: " +
+			pago_mensual_clp +
+			"\nPago total en CLP: " +
+			pago_total_clp +
+			"\nInteres total en CLP: " +
+			interes_total_clp +
+			"\n\nCantidad de prestamo en UF: " +
+			cant_prestamo_variable +
+			"\nPago mensual en UF: " +
+			pago_mensual +
+			"\nPago total en UF: " +
+			pago_total +
+			"\nInteres total en UF: " +
+			interes_total;
+
 		const blob = new Blob([arr], { type: "text/plain;charset=utf-8" });
-        saveAs(blob, "informe.txt");
+		saveAs(blob, "informe.txt");
 	};
 
 	// useEffect(() => {
@@ -414,19 +417,17 @@ export default function calculator() {
 										>
 											Enviar Solicitud
 										</button>
-										{display_download_button == true &&
-																		
-											<button
-												type="submit"
-												className="btn btn-secondary btn-block"
-												onClick={download_form}
-											>
-												Descargar informe
-											</button>
-											
-										}
 									</div>
 								</form>
+								{display_download_button == true && (
+									<button
+										type="submit"
+										className="btn btn-secondary btn-block"
+										onClick={download_form}
+									>
+										Descargar informe
+									</button>
+								)}
 								{show_alert && (
 									<div className="alert alert-success" role="alert">
 										Solicitud enviada correctamente!
