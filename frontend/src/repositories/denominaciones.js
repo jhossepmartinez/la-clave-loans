@@ -28,7 +28,7 @@ export const fetchEuro = () => {
 		.then((res) => res.json()) // convierte el resultado a json
 		.then((data) => {
 			// extrae los valores y los almacena en uf_value y uf...stamp
-			setEuroValue(1000 * parseFloat(data.Euros[0].Valor));
+			setEuroValue((1000 * parseFloat(data.Euros[0].Valor)).toFixed(2));
 			setEuroTimeStamp(data.Euros[0].Fecha.replaceAll("-", "/"));
 		});
 	return { euroValue, euroTimeStamp };
@@ -45,7 +45,7 @@ export const fetchDolar = () => {
 		.then((res) => res.json()) // convierte el resultado a json
 		.then((data) => {
 			// extrae los valores y los almacena en uf_value y uf...stamp
-			setDolarValue(1000 * parseFloat(data.Dolares[0].Valor));
+			setDolarValue(parseFloat(data.Dolares[0].Valor).toFixed(2));
 			setDolarTimeStamp(data.Dolares[0].Fecha.replaceAll("-", "/"));
 		});
 	return { dolarValue, dolarTimeStamp };
