@@ -1,4 +1,8 @@
 import React from "react";
+
+import axios from 'axios'
+import { saveAs } from "file-saver";
+
 import { useEffect, useState } from "react";
 
 import { useHistory } from "react-router-dom";
@@ -79,6 +83,11 @@ export default function calculator() {
 			pago_total: pago_total,
 			interes_total: interes_total,
 		});
+	};
+
+	const download_form = () =>{
+		const blob = new Blob(["hola"], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, "informe.txt");
 	};
 
 	// useEffect(() => {
@@ -368,6 +377,14 @@ export default function calculator() {
 											onClick={update_form}
 										>
 											Enviar Solicitud
+										</button>
+									
+										<button
+											type="submit"
+											className="btn btn-secondary btn-block"
+											onClick={download_form}
+										>
+											Descargar informe
 										</button>
 									</div>
 								</form>
