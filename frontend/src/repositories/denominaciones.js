@@ -1,69 +1,120 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const fetchUf = () => {
-	const [ufValue, set_uf_value] = useState([]);
-	const [ufTimeStamp, set_uf_time_stamp] = useState([]);
+	const [ufValue, setUfValue] = useState(null);
+	const [ufTimeStamp, setUfTimeStamp] = useState(null);
 
-	// Hace un fetch a la API
-	fetch(
-		"https://api.cmfchile.cl/api-sbifv3/recursos_api/uf?apikey=d6de0b53a079216792c02b5ddb80dc55ab2c142b&formato=json"
-	)
-		.then((res) => res.json()) // convierte el resultado a json
-		.then((data) => {
-			// extrae los valores y los almacena en uf_value y uf...stamp
-			set_uf_value(1000 * parseFloat(data.UFs[0].Valor));
-			set_uf_time_stamp(data.UFs[0].Fecha.replaceAll("-", "/"));
-		});
+	useEffect(() => {
+		fetch("https://api.cmfchile.cl/api-sbifv3/recursos_api/uf?apikey=d6de0b53a079216792c02b5ddb80dc55ab2c142b&formato=json")
+			.then((res) => {
+				if (res.ok) {
+					return res.json();
+				} else {
+					throw new Error("API Error: " + res.status);
+				}
+			})
+			.then((data) => {
+				if (data.UFs && data.UFs.length > 0) {
+					setUfValue(1000 * parseFloat(data.UFs[0].Valor.replace(".", "").replace(",", ".")));
+					setUfTimeStamp(data.UFs[0].Fecha.replaceAll("-", "/"));
+				} else {
+					setUfValue(0);
+					setUfTimeStamp("N/A");
+				}
+			})
+			.catch(() => {
+				setUfValue(0);
+				setUfTimeStamp("N/A");
+			});
+	}, []);
+
 	return { ufValue, ufTimeStamp };
 };
 
 export const fetchEuro = () => {
-	const [euroValue, setEuroValue] = useState([]);
-	const [euroTimeStamp, setEuroTimeStamp] = useState([]);
+	const [euroValue, setEuroValue] = useState(null);
+	const [euroTimeStamp, setEuroTimeStamp] = useState(null);
 
-	// Hace un fetch a la API
-	fetch(
-		"https://api.cmfchile.cl/api-sbifv3/recursos_api/euro?apikey=d6de0b53a079216792c02b5ddb80dc55ab2c142b&formato=json"
-	)
-		.then((res) => res.json()) // convierte el resultado a json
-		.then((data) => {
-			// extrae los valores y los almacena en uf_value y uf...stamp
-			setEuroValue((1000 * parseFloat(data.Euros[0].Valor)).toFixed(2));
-			setEuroTimeStamp(data.Euros[0].Fecha.replaceAll("-", "/"));
-		});
+	useEffect(() => {
+		fetch("https://api.cmfchile.cl/api-sbifv3/recursos_api/euro?apikey=d6de0b53a079216792c02b5ddb80dc55ab2c142b&formato=json")
+			.then((res) => {
+				if (res.ok) {
+					return res.json();
+				} else {
+					throw new Error("API Error: " + res.status);
+				}
+			})
+			.then((data) => {
+				if (data.Euros && data.Euros.length > 0) {
+					setEuroValue((1000 * parseFloat(data.Euros[0].Valor.replace(".", "").replace(",", "."))).toFixed(2));
+					setEuroTimeStamp(data.Euros[0].Fecha.replaceAll("-", "/"));
+				} else {
+					setEuroValue(0);
+					setEuroTimeStamp("N/A");
+				}
+			})
+			.catch(() => {
+				setEuroValue(0);
+				setEuroTimeStamp("N/A");
+			});
+	}, []);
+
 	return { euroValue, euroTimeStamp };
 };
 
 export const fetchDolar = () => {
-	const [dolarValue, setDolarValue] = useState();
-	const [dolarTimeStamp, setDolarTimeStamp] = useState([]);
+	const [dolarValue, setDolarValue] = useState(null);
+	const [dolarTimeStamp, setDolarTimeStamp] = useState(null);
 
-	// Hace un fetch a la API
-	fetch(
-		"https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar?apikey=d6de0b53a079216792c02b5ddb80dc55ab2c142b&formato=json"
-	)
-		.then((res) => res.json()) // convierte el resultado a json
-		.then((data) => {
-			// extrae los valores y los almacena en uf_value y uf...stamp
-			setDolarValue(parseFloat(data.Dolares[0].Valor).toFixed(2));
-			setDolarTimeStamp(data.Dolares[0].Fecha.replaceAll("-", "/"));
-		});
+	useEffect(() => {
+		fetch("https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar?apikey=d6de0b53a079216792c02b5ddb80dc55ab2c142b&formato=json")
+			.then((res) => {
+				if (res.ok) {
+					return res.json();
+				} else {
+					throw new Error("API Error: " + res.status);
+				}
+			})
+			.then((data) => {
+				if (data.Dolares && data.Dolares.length > 0) {
+					setDolarValue(parseFloat(data.Dolares[0].Valor).toFixed(2));
+					setDolarTimeStamp(data.Dolares[0].Fecha.replaceAll("-", "/"));
+				} else {
+					setDolarValue(0);
+					setDolarTimeStamp("N/A");
+				}
+			})
+			.catch(() => {
+				setDolarValue(0);
+				setDolarTimeStamp("N/A");
+			});
+	}, []);
+
 	return { dolarValue, dolarTimeStamp };
 };
 
 export const fetchUTM = () => {
-	const [UTMValue, setUTMValue] = useState();
-	const [UTMTimeStamp, setUTMTimeStamp] = useState([]);
+	const [UTMValue, setUTMValue] = useState(null);
+	const [UTMTimeStamp, setUTMTimeStamp] = useState(null);
 
-	// Hace un fetch a la API
-	fetch(
-		"https://api.cmfchile.cl/api-sbifv3/recursos_api/utm?apikey=d6de0b53a079216792c02b5ddb80dc55ab2c142b&formato=json"
-	)
-		.then((res) => res.json()) // convierte el resultado a json
-		.then((data) => {
-			// extrae los valores y los almacena en uf_value y uf...stamp
-			setUTMValue(1000 * parseFloat(data.UTMs[0].Valor));
-			setUTMTimeStamp(data.UTMs[0].Fecha.replaceAll("-", "/"));
-		});
+	useEffect(() => {
+		fetch("https://api.cmfchile.cl/api-sbifv3/recursos_api/utm?apikey=d6de0b53a079216792c02b5ddb80dc55ab2c142b&formato=json")
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.UTMs && data.UTMs.length > 0) {
+					setUTMValue(1000 * parseFloat(data.UTMs[0].Valor));
+					setUTMTimeStamp(data.UTMs[0].Fecha.replaceAll("-", "/"));
+				} else {
+					setUTMValue(0);
+					setUTMTimeStamp("N/A");
+				}
+			})
+			.catch(() => {
+				setUTMValue(0);
+				setUTMTimeStamp("N/A");
+			});
+	}, []);
+
 	return { UTMValue, UTMTimeStamp };
 };
+

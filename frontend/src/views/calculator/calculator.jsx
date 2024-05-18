@@ -145,7 +145,7 @@ export default function calculator() {
 										<div className="d-inline">
 											<span className="input-group-text">
 												UF Dia:{" "}
-												{ufValue ? (
+												{ufValue >= 0 ? (
 													ufValue + " CLP"
 												) : (
 													<div
@@ -186,7 +186,7 @@ export default function calculator() {
 										<div className="d-inline">
 											<span className="input-group-text">
 												Euro Dia:{" "}
-												{euroValue ? (
+												{euroValue >= 0 ? (
 													euroValue + " CLP"
 												) : (
 													<div
@@ -226,7 +226,7 @@ export default function calculator() {
 										<div className="d-inline">
 											<span className="input-group-text">
 												Dolar Dia:{" "}
-												{dolarValue ? (
+												{dolarValue >= 0 ? (
 													dolarValue + " CLP"
 												) : (
 													<div
@@ -266,7 +266,7 @@ export default function calculator() {
 										<div className="d-inline">
 											<span className="input-group-text">
 												UTM Dia:{" "}
-												{UTMValue ? (
+												{UTMValue >= 0 ? (
 													UTMValue + " CLP"
 												) : (
 													<div
