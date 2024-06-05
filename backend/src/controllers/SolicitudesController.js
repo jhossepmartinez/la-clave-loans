@@ -26,7 +26,11 @@ export default class UserController {
         pago_total: req.body.pago_total,
         interes_total: req.body.interes_total,
       });
-      res.send({ success: true, message: "Solicitud creada exitosamente" });
+      res.send({
+        success: true,
+        message: "Solicitud creada exitosamente",
+        solicitud: solicitud,
+      });
     } catch (error) {
       res.send({
         success: false,
