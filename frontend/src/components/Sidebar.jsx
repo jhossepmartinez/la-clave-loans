@@ -17,6 +17,7 @@ export default function Sidebar() {
                 {/* <Link to="/users"><Nav.Link href="/users">Usuarios</Nav.Link></Link> */}
                 {is_analista && <Link to="/calculator"><Nav.Link href="/calculator">Calculadora</Nav.Link></Link>}
                 {is_gerente && <Link to="/solicitudes"><Nav.Link href="/solicitudes">Solicitudes</Nav.Link></Link>}
+                <Link to="/busqueda-solicitudes"><Nav.Link href="/busqueda-solicitudes">Buscar Solicitudes</Nav.Link></Link>
             </Nav>
         </Navbar>
     )

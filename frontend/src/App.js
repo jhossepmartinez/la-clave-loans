@@ -13,6 +13,7 @@ import UsersView from "./views/users/show";
 import UserList from "./views/users/index";
 import UserAdd from "./views/users/create";
 
+import BusquedaSolicitudes from "./views/solicitudes/busqueda_solicitudes_publica"
 import SolicitudesList from "./views/solicitudes/index"
 import Calculator from "./views/calculator/calculator"
 
@@ -47,6 +48,9 @@ export default function App() {
                                 <Switch>
                                     <Route path="/calculator">
                                         <Calculator/>
+                                    </Route>
+                                    <Route path="/busqueda-solicitudes">
+                                        <BusquedaSolicitudes/>
                                     </Route>
                                     <Route path="/users/create">
                                         <UserAdd />
