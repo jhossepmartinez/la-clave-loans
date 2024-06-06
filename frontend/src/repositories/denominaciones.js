@@ -15,7 +15,7 @@ export const fetchUf = () => {
 			})
 			.then((data) => {
 				if (data.UFs && data.UFs.length > 0) {
-					setUfValue(1000 * parseFloat(data.UFs[0].Valor.replace(".", "").replace(",", ".")));
+					setUfValue(parseFloat(data.UFs[0].Valor.replace(".", "").replace(",", ".")));
 					setUfTimeStamp(data.UFs[0].Fecha.replaceAll("-", "/"));
 				} else {
 					setUfValue(0);
@@ -46,7 +46,7 @@ export const fetchEuro = () => {
 			})
 			.then((data) => {
 				if (data.Euros && data.Euros.length > 0) {
-					setEuroValue((1000 * parseFloat(data.Euros[0].Valor.replace(".", "").replace(",", "."))).toFixed(2));
+					setEuroValue((parseFloat(data.Euros[0].Valor.replace(".", "").replace(",", "."))).toFixed(2));
 					setEuroTimeStamp(data.Euros[0].Fecha.replaceAll("-", "/"));
 				} else {
 					setEuroValue(0);

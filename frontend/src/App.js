@@ -30,8 +30,9 @@ export default function App() {
             {
                 !user.length > 0 
                 ? 
-                    <div className="d-flex justify-content-center">
+                    <div style={{ display: 'flex', flexDirection: 'column'}} className="d-flex justify-content-center">
                     <Login setUser={setUser} />
+                    <BusquedaSolicitudes/>
                     </div>
                 : 
             <Router>
