@@ -74,19 +74,25 @@ export default function calculator() {
 
 	const [show_alert, set_show_alert] = useState(false);
 	const [display_download_button, set_download_button] = useState(false);
+	const [submitedSolicitudId, setSubmitedSolicitudId] = useState(null);
+	const [show_alert_error, set_show_alert_error] = useState(false);
 
 	const submitForm = async (e) => {
 		e.preventDefault();
 		try {
 			console.log("Intentando solicitud");
 			const response = await createSolicitud(state);
+			setSubmitedSolicitudId(response.data.solicitud.id);
 			// history.push(`/solicitudes/${response.data.id}`);
+			set_show_alert_error(false);
 			set_show_alert(true);
 			set_download_button(true);
-			setTimeout(() => {
-				set_show_alert(false);
-			}, 1500);
+			// setTimeout(() => {
+			// 	set_show_alert(false);
+			// }, 3000);
 		} catch (error) {
+			set_show_alert(false);
+			set_show_alert_error(true);
 			console.log(error);
 			alert("A ocurrido un error al actualizar");
 		}
@@ -152,7 +158,7 @@ export default function calculator() {
 														class="spinner-border spinner-border-sm"
 														role="status"
 													>
-														<span class="sr-only">Loading...</span>
+														<span class="null-only">Loading...</span>
 													</div>
 												)}
 											</span>
@@ -430,7 +436,13 @@ export default function calculator() {
 								)}
 								{show_alert && (
 									<div className="alert alert-success" role="alert">
-										Solicitud enviada correctamente!
+										Solicitud enviada correctamente! codigo solicitud{" "}
+										{submitedSolicitudId}
+									</div>
+								)}
+								{show_alert_error && (
+									<div className="alert alert-error" role="alert">
+										Solicitud no se pudo enviar correctamente!
 									</div>
 								)}
 							</div>
