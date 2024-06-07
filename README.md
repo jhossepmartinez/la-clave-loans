@@ -8,9 +8,9 @@ Este es el repositorio del *Grupo 6*, cuyos integrantes son:
 * Antonia Zúñiga - 202011553-2
 * **Tutor**: Eduardo Pino
 
-## Link Proyecto
-
-[Proyecto en Github](https://github.com/antozu707/proyecto)
+<!-- ## Link Proyecto -->
+<!---->
+<!-- [Proyecto en Github](https://github.com/antozu707/proyecto) -->
 
 ## Wiki
 
@@ -20,3 +20,4 @@ Puede acceder a la Wiki mediante el siguiente [enlace](https://gitlab.inf.utfsm.
 
 * [Video presentación cliente](https://www.youtube.com/watch?v=YkOloZBfP38) 
 * [Video presentación avance 1](https://www.youtube.com/watch?v=z36vHZiLrZE)
+* [Video presentación H4](https://youtu.be/9-ihfTn6Vc0)
