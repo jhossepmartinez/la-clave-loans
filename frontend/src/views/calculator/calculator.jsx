@@ -365,7 +365,6 @@ export default function calculator() {
 							</form>
 
 							<div id="result">
-								<h5></h5>
 								<form id="loan-form-output" onSubmit={submitForm}>
 									<div className="form-group">
 										<div className="input-group">
