@@ -109,7 +109,7 @@ export default function calculator() {
 	};
 
 	const download_form = () => {
-		var arr =
+		let arr =
 			"Tasa: " +
 			tasa +
 			"\nMeses: " +
