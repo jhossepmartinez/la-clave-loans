@@ -6,7 +6,7 @@ import Table from "react-bootstrap/Table";
 import DeleteForm from "../../components/DeleteForm";
 import { getAllSolicitudes, updateSolicitud, getSolicitud } from "../../repositories/solicitudes";
 
-export default function index() {
+export default function Index() {
 	const { data, error } = useSWR("/solicitudes?orderBy=createdAt", {
 		fetcher: getAllSolicitudes,
 		initialData: [],
