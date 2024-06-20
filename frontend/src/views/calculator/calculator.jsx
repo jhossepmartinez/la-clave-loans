@@ -16,7 +16,7 @@ import {
 	useUTM,
 } from "../../repositories/denominaciones";
 
-export default function calculator() {
+export default function Calculator() {
 	let { ufValue, ufTimeStamp } = useUf();
 	let { euroValue, euroTimeStamp } = useEuro();
 	let { dolarValue, dolarTimeStamp } = useDolar();
