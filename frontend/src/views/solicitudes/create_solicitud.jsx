@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { createUser } from "../../repositories/user";
 import { createSolicitud } from "../../repositories/solicitudes"
 
-export default function create() {
+export default function CreateSolicitud() {
 	const history = useHistory();
 
 	const [state, setstate] = useState({});
