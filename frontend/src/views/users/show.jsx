@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { useParams } from "react-router-dom";
 import { getUser } from "../../repositories/user";
 
-export default function show() {
+export default function Show() {
 	const { id } = useParams();
 
 	const { data, error } = useSWR(id, {

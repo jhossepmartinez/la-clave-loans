@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { useHistory, useParams } from "react-router-dom";
 import { updateUser, getUser } from "../../repositories/user";
 
-export default function edit() {
+export default function Edit() {
 	const history = useHistory();
 	const { id } = useParams();
 

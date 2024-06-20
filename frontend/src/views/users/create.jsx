@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createUser } from "../../repositories/user";
 
-export default function create() {
+export default function Create() {
 	const history = useHistory();
 
 	const [state, setstate] = useState({});

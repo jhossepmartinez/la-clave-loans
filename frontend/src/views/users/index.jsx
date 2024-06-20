@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import DeleteForm from "../../components/DeleteForm";
 import { deleteUser, getAllUsers } from "../../repositories/user";
 
-export default function index() {
+export default function Index() {
 	const { data, error } = useSWR("/users/all", {
 		fetcher: getAllUsers,
 		initialData: [],
