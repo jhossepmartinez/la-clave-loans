@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { getSolicitud } from "../../repositories/solicitudes";
 
-export default function busqueda_solicitudes_publica() {
+export default function BusquedaSolicitudesPublica() {
 	const [id_n_return, set_id_n_return] = useState(0);
 	const [display_search_result, set_search_result] = useState(false);
 	const [response_search, set_response_search] = useState({});
