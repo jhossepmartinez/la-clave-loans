@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const fetchUf = () => {
+export const useUf = () => {
 	const [ufValue, setUfValue] = useState(null);
 	const [ufTimeStamp, setUfTimeStamp] = useState(null);
 
@@ -31,7 +31,7 @@ export const fetchUf = () => {
 	return { ufValue, ufTimeStamp };
 };
 
-export const fetchEuro = () => {
+export const useEuro = () => {
 	const [euroValue, setEuroValue] = useState(null);
 	const [euroTimeStamp, setEuroTimeStamp] = useState(null);
 
@@ -62,7 +62,7 @@ export const fetchEuro = () => {
 	return { euroValue, euroTimeStamp };
 };
 
-export const fetchDolar = () => {
+export const useDolar = () => {
 	const [dolarValue, setDolarValue] = useState(null);
 	const [dolarTimeStamp, setDolarTimeStamp] = useState(null);
 
@@ -93,7 +93,7 @@ export const fetchDolar = () => {
 	return { dolarValue, dolarTimeStamp };
 };
 
-export const fetchUTM = () => {
+export const useUTM = () => {
 	const [UTMValue, setUTMValue] = useState(null);
 	const [UTMTimeStamp, setUTMTimeStamp] = useState(null);
 

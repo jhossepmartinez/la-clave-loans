@@ -10,17 +10,17 @@ import { useHistory } from "react-router-dom";
 
 import { createSolicitud } from "../../repositories/solicitudes";
 import {
-	fetchUf,
-	fetchEuro,
-	fetchDolar,
-	fetchUTM,
+	useUf,
+	useEuro,
+	useDolar,
+	useUTM,
 } from "../../repositories/denominaciones";
 
 export default function calculator() {
-	let { ufValue, ufTimeStamp } = fetchUf();
-	let { euroValue, euroTimeStamp } = fetchEuro();
-	let { dolarValue, dolarTimeStamp } = fetchDolar();
-	let { UTMValue, UTMTimeStamp } = fetchUTM();
+	let { ufValue, ufTimeStamp } = useUf();
+	let { euroValue, euroTimeStamp } = useEuro();
+	let { dolarValue, dolarTimeStamp } = useDolar();
+	let { UTMValue, UTMTimeStamp } = useUTM();
 
 	const [cant_prestamo, set_cant_prestamo] = useState(0);
 	const [tasa, set_tasa] = useState(0);
