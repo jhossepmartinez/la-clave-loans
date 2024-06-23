@@ -1,0 +1,6 @@
+graficos de tiempos de respuesta
+
+
+100 users: indica cantidad de usuarios
+<numero> max rt: indica tiempo de respuesta maximo
+
