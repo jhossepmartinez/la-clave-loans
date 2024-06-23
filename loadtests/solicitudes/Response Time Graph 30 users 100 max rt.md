@@ -1,4 +1,4 @@
-![30users 100maxrt](./images/Response Time Graph 30 users 100 max rt.png)
+![30users 100maxrt](./images/Response time 30 users 200 rt.png)
 
 En este gráfico, se observa el tiempo de respuesta en milisegundos para las solicitudes, realizando una situación para 30 usuarios recurrentes y un máximo de 100 milisegundos de response time, tiempo que corresponde al máximo esperado.
 

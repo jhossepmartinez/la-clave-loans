@@ -2,7 +2,6 @@ Al analizar el grafico del Tiempo de respuesta en milisegundos vs Solicitudes pa
 
 ![100users 500maxrt](./images/Response time 100 users 500 rt.png)
 
-
 Al analizar el summary se ve un 22,2% de error, esto se puede inferir que se debe a la mayor cantidad de usuarios.
 
 ![100users 500maxrt](./images/summary 100 users 500 rt.png)
